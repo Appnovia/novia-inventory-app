@@ -44,6 +44,7 @@ export default function StockScreen() {
                 color: activeTab === tab ? "#fff" : "#333",
                 fontWeight: "600",
               }}
+              className="font-poppins-regular text-sm"
             >
               {tab}
             </Text>

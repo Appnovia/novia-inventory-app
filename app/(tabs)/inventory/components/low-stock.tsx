@@ -2,9 +2,8 @@ import { useAuth } from "@/hooks/auth";
 import useAxios from "@/hooks/useAxios";
 import { getLowStockItems } from "@/services/api/dashboard";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import React, { useState } from "react";
+import React from "react";
 import {
-  View,
   Text,
   FlatList,
   TouchableOpacity,
@@ -40,9 +39,6 @@ const LowStock = () => {
 
   const inventory = data?.pages.flatMap((page: any) => page.items) || [];
 
-  //   console.log("low", JSON.stringify(inventory, null, 2));
-
-  // Calculate stock totals for each item (mock calculation)
   const getStockData = (item: any) => {
     let totalStock = 0;
 
@@ -66,9 +62,15 @@ const LowStock = () => {
         className="bg-white p-4 mb-2 rounded-lg border border-gray-300"
         onPress={() => handleItemPress(item)}
       >
-        <Text className="text-base font-medium text-gray-900">{item.name}</Text>
-        <Text className="text-sm text-gray-600">SKU: {item.sku}</Text>
-        <Text className="text-sm text-gray-600">Stock: {stockData.stock}</Text>
+        <Text className="font-poppins-bold text-md text-gray-900">
+          {item.name}
+        </Text>
+        <Text className="font-poppins-regular text-sm text-gray-600">
+          SKU: {item.sku}
+        </Text>
+        <Text className="font-poppins-light text-sm text-base-color">
+          Available Stock: {stockData.stock}
+        </Text>
       </TouchableOpacity>
     );
   };
@@ -84,9 +86,7 @@ const LowStock = () => {
       <Search value={search} onChange={setSearch} onSubmit={refetch} />
 
       {isLoading ? (
-        <View className="flex-1 justify-center items-center">
-          <ActivityIndicator size="large" />
-        </View>
+        <ActivityIndicator size="large" color="#FF6347" className="mt-10" />
       ) : (
         <FlatList
           data={inventory}

@@ -1,26 +1,29 @@
 {
   "expo": {
-    "name": "novia-inventory-mobile",
+    "name": "Novia Inventory",
     "slug": "novia-inventory-mobile",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/inventory.png",
+    "icon": "./assets/images/app-icon.png",
     "scheme": "noviainventorymobile",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "splash": {
-      "image": "./assets/images/onboarding/1.png",
+      "image": "./assets/images/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#ffffff",
+      "color": "#FF6347"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.cadinal.noviainventorymobile"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/splash.png",
         "backgroundColor": "#ffffff"
       },
+      "versionCode": 4,
       "edgeToEdgeEnabled": true,
       "package": "com.cadinal.noviainventorymobile"
     },
@@ -29,17 +32,7 @@
       "output": "static",
       "favicon": "./assets/images/favicon.png"
     },
-    "plugins": [
-      [
-        "expo-splash-screen",
-        {
-          "backgroundColor": "#ffffff",
-          "image": "./assets/images/onboarding/1.png"
-        }
-      ],
-      "expo-router",
-      "expo-secure-store"
-    ],
+    "plugins": ["expo-router", "expo-secure-store"],
     "experiments": {
       "typedRoutes": true
     },

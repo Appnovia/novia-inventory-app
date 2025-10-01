@@ -38,7 +38,7 @@ export default function Slide({
   ) => {
     if (index === 2) {
       await setItem("onboarding", "true");
-      router.push("/(routes)/signup");
+      router.replace("/(routes)/signup");
     } else {
       setIndex(index + 1);
     }
@@ -46,7 +46,7 @@ export default function Slide({
 
   return (
     <>
-      <Svg style={StyleSheet.absoluteFill}>
+      {/* <Svg style={StyleSheet.absoluteFill}>
         <Defs>
           <RadialGradient id="gradient" cx="50%" cy="35%">
             <Stop offset="0%" stopColor={slide.color} />
@@ -60,7 +60,7 @@ export default function Slide({
           height={HEIGHT}
           fill={"url(#gradient)"}
         />
-      </Svg>
+      </Svg> */}
       <View style={styles.container}>
         <View>{slide.image}</View>
         <View>
