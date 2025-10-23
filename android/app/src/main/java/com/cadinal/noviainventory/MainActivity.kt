@@ -1,4 +1,4 @@
-package com.cadinal.noviainventorymobile
+package com.cadinal.noviainventory
 import expo.modules.splashscreen.SplashScreenManager
 
 import android.os.Build

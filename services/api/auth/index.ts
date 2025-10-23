@@ -1,31 +1,34 @@
 import type { AxiosError, AxiosInstance } from "axios";
-import APIRoutes from './routes';
+import APIRoutes from "./routes";
 
 export async function loginUser(
-  axiosInstance: AxiosInstance, 
+  axiosInstance: AxiosInstance,
   credentials: loginData
 ) {
   try {
     const data = {
       email: credentials.email,
-      password: credentials.password
-    }
+      password: credentials.password,
+    };
     const result = await axiosInstance.post(APIRoutes.LoginUser, data);
     return result.data;
-  } catch(error: unknown) {
-    throw new Error((error as AxiosError).message)
+  } catch (error: unknown) {
+    throw new Error((error as AxiosError).message);
   }
 }
 
 export async function registerUser(
-    axiosInstance: AxiosInstance,
-    credentials: signUpData
+  axiosInstance: AxiosInstance,
+  credentials: signUpData
 ) {
   try {
-    const result = await axiosInstance.post(APIRoutes.RegisterUser, credentials);
+    const result = await axiosInstance.post(
+      APIRoutes.RegisterUser,
+      credentials
+    );
     return result.data;
   } catch (error: any) {
-    throw new Error((error as AxiosError).message)
+    throw new Error((error as AxiosError).message);
   }
 }
 
@@ -52,7 +55,6 @@ export async function sendOTP(axiosInstance: AxiosInstance, email: string) {
   }
 }
 
-
 export async function resetPassword(
   axiosInstance: AxiosInstance,
   resetPasswordData: any
@@ -64,6 +66,21 @@ export async function resetPassword(
       newPassword: resetPasswordData.password,
     };
     const result = await axiosInstance.post(APIRoutes.ResetPassword, data);
+    return result.data;
+  } catch (error: unknown) {
+    throw new Error((error as AxiosError).message);
+  }
+}
+
+export async function updateToken(
+  axiosInstance: AxiosInstance,
+  updateTokenData: { email: string; token: string }
+) {
+  try {
+    const result = await axiosInstance.put(
+      APIRoutes.updateToken,
+      updateTokenData
+    );
     return result.data;
   } catch (error: unknown) {
     throw new Error((error as AxiosError).message);

@@ -16,7 +16,11 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.cadinal.noviainventorymobile"
+      "bundleIdentifier": "com.cadinal.noviainventorymobile",
+      "infoPlist": {
+        "NSUserTrackingUsageDescription": "This identifier will be used to send you push notifications.",
+        "UIBackgroundModes": ["remote-notification"]
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -25,7 +29,7 @@
       },
       "versionCode": 4,
       "edgeToEdgeEnabled": true,
-      "package": "com.cadinal.noviainventorymobile"
+      "package": "com.cadinal.noviainventory"
     },
     "web": {
       "bundler": "metro",

@@ -1,4 +1,4 @@
-package com.cadinal.noviainventorymobile
+package com.cadinal.noviainventory
 
 import android.app.Application
 import android.content.res.Configuration

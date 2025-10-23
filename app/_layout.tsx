@@ -14,6 +14,18 @@ import Toast from "react-native-toast-message";
 import "../global.css";
 import Nav from "@/components/nav";
 
+import * as Notifications from "expo-notifications";
+
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+    shouldPlaySound: true,
+    shouldSetBadge: false,
+    shouldShowBanner: true,
+    shouldShowList: true,
+  }),
+});
+
 const queryClient = new QueryClient();
 
 export default function RootLayout() {

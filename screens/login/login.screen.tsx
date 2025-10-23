@@ -2,8 +2,9 @@ import { Button } from "@/components/button";
 import { Input } from "@/components/input";
 import { Text } from "@/components/text";
 import { useAuth } from "@/hooks/auth";
+import { registerForPushNotificationsAsync } from "@/hooks/notification";
 import useAxios from "@/hooks/useAxios";
-import { loginUser } from "@/services/api/auth";
+import { loginUser, updateToken } from "@/services/api/auth";
 import { useMutation } from "@tanstack/react-query";
 import * as EmailValidator from "email-validator";
 import { Link, router } from "expo-router";
@@ -28,6 +29,17 @@ export default function LoginScreen() {
     },
   });
 
+  const updatePushTokenMutation = useMutation({
+    mutationFn: (payload: { email: string; token: string }) =>
+      updateToken(axios, payload),
+    onSuccess: () => {
+      console.log("Push token updated successfully");
+    },
+    onError: (err) => {
+      console.error("Failed to update push token", err);
+    },
+  });
+
   const { isPending, mutate } = useMutation({
     mutationFn: (formData: loginData) => loginUser(axios, formData),
     onSuccess: async (data) => {
@@ -38,6 +50,16 @@ export default function LoginScreen() {
 
       const { token, user } = data;
       // console.log(token, user);
+
+      const pushToken = await registerForPushNotificationsAsync();
+      console.log("Expo Push Token:", pushToken);
+
+      if (pushToken) {
+        updatePushTokenMutation.mutate({
+          email: user.email,
+          token: pushToken,
+        });
+      }
 
       setSession({
         token,
